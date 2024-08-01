@@ -1,0 +1,144 @@
+# DaemonSet, Deployment or StatefulSet
+kind: "DaemonSet"
+# azureblob, cloudwatch, elasticsearch7, elasticsearch8, gcs, graylog , kafka, kafka2, kinesis, opensearch
+variant: postgresql
+# # Only applicable for Deployment or StatefulSet
+# replicaCount: 1
+
+image:
+  repository: "docker.io/reanahub/fluentd"
+  pullPolicy: "IfNotPresent"
+  tag: "latest"
+
+## Fluentd configurations:
+##
+fileConfigs:
+  01_sources.conf: |-
+    <source>
+      @type prometheus
+      @id in_prometheus
+      bind "#{ENV['FLUENTD_PROMETHEUS_BIND'] || '0.0.0.0'}"
+      port "#{ENV['FLUENTD_PROMETHEUS_PORT'] || '24231'}"
+      metrics_path "#{ENV['FLUENTD_PROMETHEUS_PATH'] || '/metrics'}"
+    </source>
+
+    <source>
+      @type prometheus_output_monitor
+      @id in_prometheus_output_monitor
+    </source>
+    <source>
+      @type tail
+      @id in_tail_container_logs
+      @label @KUBERNETES
+      path /var/log/containers/reana-run-*.log
+      pos_file /var/log/fluentd-containers.log.pos
+      tag kubernetes.*
+      read_from_head true
+      refresh_interval 1
+      rotate_wait 5
+      <parse>
+        @type regexp
+        expression /^(?<time>.+) (?<stream>stdout|stderr)( (.))? (?<log>.*)$/
+        time_format '%Y-%m-%dT%H:%M:%S.%NZ'
+        keep_time_key true
+      </parse>
+      emit_unmatched_lines true
+    </source>
+
+  02_filters.conf: |-
+    <label @KUBERNETES>
+      <match kubernetes.var.log.containers.fluentd**>
+        @type relabel
+        @label @FLUENT_LOG
+      </match>
+
+      # <match kubernetes.var.log.containers.**_kube-system_**>
+      #   @type null
+      #   @id ignore_kube_system_logs
+      # </match>
+
+      <filter kubernetes.var.log.containers.reana-run-**>
+        @type kubernetes_metadata
+        @id filter_kube_metadata
+        skip_labels false
+        skip_container_metadata false
+        skip_namespace_metadata true
+        skip_master_url true
+      </filter>
+
+      <filter kubernetes.var.log.containers.reana-run-**>
+        @type record_transformer
+        enable_ruby
+        <record>
+          pod ${record["kubernetes"]["pod_name"]}
+          tag ${tag}
+        </record>
+      </filter>
+
+      <filter kubernetes.var.log.containers.reana-run-batch-*_workflow-engine-**>
+        @type record_transformer
+        enable_ruby
+        <record>
+          workflow_id ${record["kubernetes"]["labels"]["reana-run-batch-workflow-uuid"]}
+          tag ${tag}
+        </record>
+      </filter>
+
+      <match kubernetes.var.log.containers.reana-run-**>
+        @type relabel
+        @label @DISPATCH
+      </match>
+    </label>
+
+  03_dispatch.conf: |-
+    <label @DISPATCH>
+      <match **>
+        @type relabel
+        @label @OUTPUT
+      </match>
+    </label>
+
+  04_outputs.conf: |-
+    <label @OUTPUT>
+      <match xxx.**>
+        @type stdout
+      </match>
+      <match kubernetes.var.log.containers.reana-run-job-**>
+        @type sql
+        host reana-db
+        port 5432
+        database reana
+        adapter postgresql
+        schema_search_path __reana
+        username reana
+        password reana
+
+        <table>
+          table job_log
+          column_mapping 'log:log,time:time,tag:tag,pod:pod'
+          # This is the default table because it has no "pattern" argument in <table>
+          # The logic is such that if all non-default <table> blocks
+          # do not match, the default one is chosen.
+          # The default table is required.
+        </table>
+      </match>
+      <match kubernetes.var.log.containers.reana-run-batch-*_workflow-engine-**>
+        @type sql
+        host reana-db
+        port 5432
+        database reana
+        adapter postgresql
+        schema_search_path __reana
+        username reana
+        password reana
+
+        <table>
+          table workflow_log
+          column_mapping 'log:log,time:time,tag:tag,workflow_id:workflow_id'
+          # This is the default table because it has no "pattern" argument in <table>
+          # The logic is such that if all non-default <table> blocks
+          # do not match, the default one is chosen.
+          # The default table is required.
+        </table>
+      </match>
+    </label>
