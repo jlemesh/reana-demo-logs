@@ -2,7 +2,7 @@
 eck-elasticsearch:
   nodeSets:
   - name: default
-    count: 3
+    count: 1
     config:
       # Comment out when setting the vm.max_map_count via initContainer, as these are mutually exclusive.
       # For production workloads, it is strongly recommended to increase the kernel setting vm.max_map_count to 262144
@@ -83,6 +83,11 @@ eck-beats:
             - name: filebeat
               securityContext:
                 runAsUser: 0
+              resources:
+                limits:
+                  memory: 2Gi
+                requests:
+                  memory: 2Gi
               env:
               - name: NODE_NAME
                 valueFrom:
