@@ -1,0 +1,45 @@
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: fluentd-config
+  labels:
+    k8s-app: fluentd-logging
+    version: v1
+data:
+  fluent.conf: |
+    <source>
+      @type tail
+      path "/opt/app/log.log"
+      pos_file "/opt/app/file.log.pos"
+      tag "#{ENV['POD_NAME'] || 'default-pod-name'}"
+      read_from_head true
+      <parse>
+        @type none
+      </parse>
+    </source>
+
+    <filter reana-**>
+        @type record_transformer
+        enable_ruby
+        <record>
+          time ${Time.now.strftime('%Y-%m-%dT%H:%M:%S%z')}
+        </record>
+      </filter>
+
+    <match reana-**>
+      @type opensearch
+      @id out_os
+      @log_level info
+      include_tag_key true
+      host opensearch-cluster-master
+      port 9200
+      <buffer>
+        flush_at_shutdown true
+        flush_mode immediate
+        flush_thread_count 8
+        flush_thread_interval 1
+        flush_thread_burst_interval 1
+        retry_forever true
+        retry_type exponential_backoff
+      </buffer>
+    </match>
