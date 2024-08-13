@@ -1,0 +1,129 @@
+# azureblob, cloudwatch, elasticsearch7, elasticsearch8, gcs, graylog , kafka, kafka2, kinesis, opensearch
+variant: opensearch
+
+fileConfigs:
+  01_sources.conf: |-
+    <source>
+      @type tail
+      @id in_tail_container_logs
+      @label @KUBERNETES
+      path /var/log/containers/reana-run-*.log
+      pos_file /var/log/fluentd-containers.log.pos
+      tag kubernetes.*
+      read_from_head true
+      refresh_interval 1
+      <parse>
+        @type multi_format
+        <pattern>
+          format json
+          time_key time
+          time_type string
+          time_format "%Y-%m-%dT%H:%M:%S.%NZ"
+          keep_time_key true
+        </pattern>
+        <pattern>
+          format regexp
+          expression /^(?<time>.+) (?<stream>stdout|stderr)( (.))? (?<log>.*)$/
+          time_format '%Y-%m-%dT%H:%M:%S.%NZ'
+          keep_time_key true
+        </pattern>
+      </parse>
+      emit_unmatched_lines true
+    </source>
+
+    # expose metrics in prometheus format
+    <source>
+      @type prometheus
+      bind 0.0.0.0
+      port 24231
+      metrics_path /metrics
+    </source>
+
+  02_filters.conf: |-
+    <label @KUBERNETES>
+      <match kubernetes.var.log.containers.fluentd**>
+        @type relabel
+        @label @FLUENT_LOG
+      </match>
+
+      # <match kubernetes.var.log.containers.**_kube-system_**>
+      #   @type null
+      #   @id ignore_kube_system_logs
+      # </match>
+
+      <filter kubernetes.**>
+        @type kubernetes_metadata
+        @id filter_kube_metadata
+        skip_labels false
+        skip_container_metadata false
+        skip_namespace_metadata true
+        skip_master_url true
+      </filter>
+
+      <match **>
+        @type relabel
+        @label @DISPATCH
+      </match>
+    </label>
+
+  03_dispatch.conf: |-
+    <label @DISPATCH>
+      <filter **>
+        @type prometheus
+        <metric>
+          name fluentd_input_status_num_records_total
+          type counter
+          desc The total number of incoming records
+          <labels>
+            tag ${tag}
+            hostname ${hostname}
+          </labels>
+        </metric>
+      </filter>
+
+      <match **>
+        @type relabel
+        @label @OUTPUT
+      </match>
+    </label>
+
+  04_outputs.conf: |-
+    <label @OUTPUT>
+      <match kubernetes.var.log.containers.reana-run-job-**>
+        @type opensearch
+        @id out_os1
+        @log_level info
+        include_tag_key true
+        host opensearch-cluster-master
+        port 9200
+        index_name job_log
+        <buffer>
+          flush_at_shutdown true
+          flush_mode immediate
+          flush_thread_count 8
+          flush_thread_interval 1
+          flush_thread_burst_interval 1
+          retry_forever true
+          retry_type exponential_backoff
+        </buffer>
+      </match>
+
+      <match /.*_workflow-engine-.*/>
+        @type opensearch
+        @id out_os2
+        @log_level info
+        include_tag_key true
+        host opensearch-cluster-master
+        port 9200
+        index_name workflow_log
+        <buffer>
+          flush_at_shutdown true
+          flush_mode immediate
+          flush_thread_count 8
+          flush_thread_interval 1
+          flush_thread_burst_interval 1
+          retry_forever true
+          retry_type exponential_backoff
+        </buffer>
+      </match>
+    </label>
