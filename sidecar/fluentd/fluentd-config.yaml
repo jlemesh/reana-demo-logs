@@ -7,6 +7,10 @@ metadata:
     version: v1
 data:
   fluent.conf: |
+    <system>
+      rpc_endpoint 127.0.0.1:24444
+    </system>
+
     <source>
       @type tail
       path "/opt/app/log.log"
