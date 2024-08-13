@@ -1,0 +1,13 @@
+{
+    "properties": {
+        "message": {
+            "type": "text"
+        },
+        "tag": {
+            "type": "keyword"
+        },
+        "time": {
+            "type": "date"
+        }
+    }
+}

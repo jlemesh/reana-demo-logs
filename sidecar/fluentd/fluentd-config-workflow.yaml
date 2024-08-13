@@ -1,7 +1,7 @@
 kind: ConfigMap
 apiVersion: v1
 metadata:
-  name: fluentd-config
+  name: fluentd-config-workflow
   labels:
     k8s-app: fluentd-logging
     version: v1
@@ -15,7 +15,7 @@ data:
       @type tail
       path "/opt/app/log.log"
       pos_file "/opt/app/file.log.pos"
-      tag "#{ENV['BACKEND_JOB_ID'] || 'default-id'}"
+      tag "#{ENV['WORKFLOW_ID'] || 'default-id'}"
       read_from_head true
       refresh_interval 1
       <parse>
@@ -23,7 +23,7 @@ data:
       </parse>
     </source>
 
-    <filter reana-**>
+    <filter **>
         @type record_transformer
         enable_ruby
         <record>
@@ -31,14 +31,14 @@ data:
         </record>
       </filter>
 
-    <match reana-**>
+    <match **>
       @type opensearch
       @id out_os
       @log_level info
       include_tag_key true
       host opensearch-cluster-master
       port 9200
-      index_name job_log
+      index_name workflow_log
       <buffer>
         flush_at_shutdown true
         flush_mode immediate
