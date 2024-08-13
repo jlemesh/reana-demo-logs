@@ -44,3 +44,8 @@ extraEnvs:
 
 securityConfig:
   enabled: false
+
+resources:
+  requests:
+    cpu: "1000m"
+    memory: "2Gi"
