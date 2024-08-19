@@ -1,0 +1,40 @@
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: fluentbit-config-job
+  labels:
+    k8s-app: fluentbit-logging
+    version: v1
+data:
+  fluent-bit.conf: |
+    [SERVICE]
+      Daemon Off
+      Flush 1
+      Log_Level debug
+      HTTP_Server On
+      HTTP_Listen 0.0.0.0
+      HTTP_Port 24444
+      Health_Check On
+    [INPUT]
+      Name tail
+      Path /opt/app/log.log
+      Mem_Buf_Limit 5MB
+      Skip_Long_Lines Off
+      Refresh_Interval 1
+      Rotate_Wait 10
+    [FILTER]
+      Name Lua
+      Match *
+      call append_time
+      code function append_time(tag, timestamp, record) new_record = record new_record["time"] = os.date("%Y-%m-%d %H:%M:%S") return tag, timestamp, new_record end
+    [FILTER]
+      Name record_modifier
+      Match *
+      Record backend_job_id ${BACKEND_JOB_ID}
+    [OUTPUT]
+      Name                opensearch
+      Match               *
+      Host                opensearch-cluster-master
+      Port                9200
+      Index               job_log
+      Suppress_Type_Name  On
