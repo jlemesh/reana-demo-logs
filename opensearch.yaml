@@ -2,9 +2,9 @@
 # If discovery.type in the opensearch configuration is set to "single-node",
 # this should be set to "true"
 # If "true", replicas will be forced to 1
-singleNode: true
+singleNode: false
 
-replicas: 1
+replicas: 3
 
 # such as opensearch.yml and log4j2.properties
 config:
@@ -47,5 +47,8 @@ securityConfig:
 
 resources:
   requests:
-    cpu: "1000m"
+    cpu: "2000m"
     memory: "2Gi"
+
+nodeSelector:
+  reana.io/system: infrastructure
