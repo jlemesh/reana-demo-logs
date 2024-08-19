@@ -43,8 +43,8 @@ data:
         flush_at_shutdown true
         flush_mode immediate
         flush_thread_count 8
-        flush_thread_interval 1
-        flush_thread_burst_interval 1
+        flush_thread_interval 2
+        flush_thread_burst_interval 2
         retry_forever true
         retry_type exponential_backoff
       </buffer>
