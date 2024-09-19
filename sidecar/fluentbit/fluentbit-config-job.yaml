@@ -30,11 +30,15 @@ data:
     [FILTER]
       Name record_modifier
       Match *
-      Record backend_job_id ${BACKEND_JOB_ID}
+      Record kubernetes.labels.job-name ${BACKEND_JOB_ID}
+    [FILTER]
+      Name modify
+      Match *
+      Rename message log
     [OUTPUT]
       Name                opensearch
       Match               *
       Host                opensearch-cluster-master
       Port                9200
-      Index               job_log
+      Index               fluentbit-job_log
       Suppress_Type_Name  On

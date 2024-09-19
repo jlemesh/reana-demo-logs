@@ -27,11 +27,8 @@ data:
       Match               *
       Host                opensearch-cluster-master
       Port                9200
-      Index               workflow_log
+      Index               fluentbit-workflow_log
       Suppress_Type_Name  On
-    [OUTPUT]
-      Name stdout
-      Match *
     [FILTER]
       Name Lua
       Match *
@@ -40,4 +37,8 @@ data:
     [FILTER]
       Name record_modifier
       Match *
-      Record workflow_id ${WORKFLOW_ID}
+      Record kubernetes.labels.reana-run-batch-workflow-uuid ${WORKFLOW_ID}
+    [FILTER]
+      Name modify
+      Match *
+      Rename message log
