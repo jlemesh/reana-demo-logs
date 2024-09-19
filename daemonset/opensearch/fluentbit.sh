@@ -45,6 +45,7 @@ curl -XPUT "http://localhost:9200/workflow_log/_mapping" \
     -H 'Content-Type: application/json' \
     --data "@reana-demo-logs/daemonset/opensearch/workflow_log_mapping.json"
 
+helm repo add fluent https://fluent.github.io/helm-charts
 helm upgrade --install fluent-bit \
     -f reana-demo-logs/daemonset/opensearch/reana-fluentbit-opensearch.yaml \
     fluent/fluent-bit
