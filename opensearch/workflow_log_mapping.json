@@ -1,0 +1,66 @@
+{
+    "dynamic": "strict",
+    "properties": {
+        "@timestamp": {
+            "type": "date"
+        },
+        "kubernetes": {
+            "properties": {
+                "container_image": {
+                    "type": "text"
+                },
+                "container_name": {
+                    "type": "text"
+                },
+                "docker_id": {
+                    "type": "text"
+                },
+                "host": {
+                    "type": "text"
+                },
+                "labels": {
+                    "properties": {
+                        "batch.kubernetes.io/controller-uid": { "type": "text" },
+                        "batch.kubernetes.io/job-name": { "type": "text" },
+                        "controller-uid": { "type": "text" },
+                        "job-name": {
+                            "type": "text",
+                            "fields": {
+                                "keyword": {
+                                    "type": "keyword"
+                                }
+                            }
+                        },
+                        "reana-run-batch-workflow-uuid": {
+                            "type": "text",
+                            "fields": {
+                                "keyword": {
+                                    "type": "keyword"
+                                }
+                            }
+                        },
+                        "reana_workflow_mode": { "type": "text" }
+                    }
+                },
+                "namespace_name": {
+                    "type": "text"
+                },
+                "pod_id": {
+                    "type": "text"
+                },
+                "pod_name": {
+                    "type": "text"
+                }
+            }
+        },
+        "log": {
+            "type": "text"
+        },
+        "stream": {
+            "type": "text"
+        },
+        "time": {
+            "type": "date"
+        }
+    }
+}
