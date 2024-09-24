@@ -1,0 +1,53 @@
+==> Workflow engine logs
+Workflow exited unexpectedly.
+2024-09-24 13:45:43,979 | root | MainThread | INFO | Publishing step:0, cmd: python "code/helloworld.py" --inputfile "data/names.txt" --outputfile "results/greetings.txt" --sleeptime 1.0, total steps 1 to MQ
+2024-09-24 13:46:14,667 | root | MainThread | WARNING | Termination signal 15 received. Workflow interrupted ...
+
+
+
+
+==> Job logs
+==> Step: hello1
+==> Workflow ID: ded190e8-9f18-432c-a1d1-5555a5625b51
+==> Compute backend: Kubernetes
+==> Job ID: reana-run-job-182d87da-3b76-43bf-a823-85050cbe5a53
+==> Docker image: docker.io/library/python:3.8-slim
+==> Command: python "code/helloworld.py" --inputfile "data/names.txt" --outputfile "results/greetings.txt" --sleeptime 1.0
+==> Status: stopped
+==> Started: 2024-09-24T13:45:43
+==> Logs:
+job: :
+ 2024-09-24T13:45:44 INFO     Parameters: inputfile=data/names.txt outputfile=results/greetings.txt sleeptime=1.0
+0 Hello Jane Doe!
+1 Hello Joe Bloggs!
+2 Hello Jane Doe!
+3 Hello Joe Bloggs!
+4 Hello Jane Doe!
+5 Hello Joe Bloggs!
+6 Hello Jane Doe!
+7 Hello Joe Bloggs!
+8 Hello Jane Doe!
+9 Hello Joe Bloggs!
+10 Hello Jane Doe!
+11 Hello Joe Bloggs!
+12 Hello Jane Doe!
+13 Hello Joe Bloggs!
+14 Hello Jane Doe!
+15 Hello Joe Bloggs!
+16 Hello Jane Doe!
+17 Hello Joe Bloggs!
+18 Hello Jane Doe!
+19 Hello Joe Bloggs!
+20 Hello Jane Doe!
+21 Hello Joe Bloggs!
+22 Hello Jane Doe!
+23 Hello Joe Bloggs!
+24 Hello Jane Doe!
+25 Hello Joe Bloggs!
+26 Hello Jane Doe!
+27 Hello Joe Bloggs!
+28 Hello Jane Doe!
+29 Hello Joe Bloggs!
+30 Hello Jane Doe!
+
+

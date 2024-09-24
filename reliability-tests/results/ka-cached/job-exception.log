@@ -1,0 +1,60 @@
+==> Workflow engine logs
+2024-09-24 13:39:50,888 | root | MainThread | INFO | Publishing step:0, cmd: python "code/exception.py" --inputfile "data/names.txt" --outputfile "results/greetings.txt" --sleeptime 1.0, total steps 1 to MQ
+2024-09-24 13:40:27,102 | root | MainThread | INFO | Workflow 24b61fee-5a24-4585-9ca5-378c5da868d0 finished. Files available at /var/reana/users/00000000-0000-0000-0000-000000000000/workflows/24b61fee-5a24-4585-9ca5-378c5da868d0.
+
+
+
+
+==> Job logs
+==> Step: hello1
+==> Workflow ID: 24b61fee-5a24-4585-9ca5-378c5da868d0
+==> Compute backend: Kubernetes
+==> Job ID: reana-run-job-e148605f-b66b-4f30-b508-b7d5ae260b6a
+==> Docker image: docker.io/library/python:3.8-slim
+==> Command: python "code/exception.py" --inputfile "data/names.txt" --outputfile "results/greetings.txt" --sleeptime 1.0
+==> Status: failed
+==> Started: 2024-09-24T13:39:50
+==> Finished: 2024-09-24T13:40:23
+==> Logs:
+job: :
+ 2024-09-24T13:39:51 INFO     Parameters: inputfile=data/names.txt outputfile=results/greetings.txt sleeptime=1.0
+0 Hello Jane Doe!
+1 Hello Joe Bloggs!
+2 Hello Jane Doe!
+3 Hello Joe Bloggs!
+4 Hello Jane Doe!
+5 Hello Joe Bloggs!
+6 Hello Jane Doe!
+7 Hello Joe Bloggs!
+8 Hello Jane Doe!
+9 Hello Joe Bloggs!
+10 Hello Jane Doe!
+11 Hello Joe Bloggs!
+12 Hello Jane Doe!
+13 Hello Joe Bloggs!
+14 Hello Jane Doe!
+15 Hello Joe Bloggs!
+16 Hello Jane Doe!
+17 Hello Joe Bloggs!
+18 Hello Jane Doe!
+19 Hello Joe Bloggs!
+20 Hello Jane Doe!
+21 Hello Joe Bloggs!
+22 Hello Jane Doe!
+23 Hello Joe Bloggs!
+24 Hello Jane Doe!
+25 Hello Joe Bloggs!
+26 Hello Jane Doe!
+27 Hello Joe Bloggs!
+28 Hello Jane Doe!
+29 Hello Joe Bloggs!
+Traceback (most recent call last):
+  File "code/exception.py", line 100, in <module>
+    hello(parsed_args.inputfile, parsed_args.outputfile, parsed_args.sleeptime)
+  File "code/exception.py", line 62, in hello
+    raise Exception("This is a test exception")
+Exception: This is a test exception
+
+
+Error
+

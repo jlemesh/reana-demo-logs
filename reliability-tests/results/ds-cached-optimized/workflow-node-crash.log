@@ -1,0 +1,22 @@
+==> Workflow engine logs
+2024-09-24 12:09:11,372 | root | MainThread | INFO | Publishing step:0, cmd: python "code/helloworld.py" --inputfile "data/names.txt" --outputfile "results/greetings.txt" --sleeptime 1.0, total steps 1 to MQ
+
+
+
+==> Job logs
+==> Step: hello1
+==> Workflow ID: 37a0d85f-a0d3-4e1d-9289-dd8730cb6639
+==> Compute backend: Kubernetes
+==> Job ID: reana-run-job-fa5d9784-f6cf-451b-8fc6-2ae4e19093a0
+==> Docker image: docker.io/library/python:3.8-slim
+==> Command: python "code/helloworld.py" --inputfile "data/names.txt" --outputfile "results/greetings.txt" --sleeptime 1.0
+==> Status: running
+==> Started: 2024-09-24T12:09:11
+==> Step hello1 emitted no logs.
+{
+  "job_id": "5da062cc-774e-4899-8bbc-df6dfb101e6d",
+  "job_name": "hello1",
+  "logs": "2024-09-24T12:09:11 INFO     Parameters: inputfile=data/names.txt outputfile=results/greetings.txt sleeptime=1.0\n0 Hello Jane Doe!\n1 Hello Joe Bloggs!\n2 Hello Jane Doe!\n3 Hello Joe Bloggs!\n4 Hello Jane Doe!\n5 Hello Joe Bloggs!\n6 Hello Jane Doe!\n7 Hello Joe Bloggs!\n8 Hello Jane Doe!\n9 Hello Joe Bloggs!\n10 Hello Jane Doe!\n11 Hello Joe Bloggs!\n12 Hello Jane Doe!\n13 Hello Joe Bloggs!\n14 Hello Jane Doe!\n15 Hello Joe Bloggs!\n16 Hello Jane Doe!\n17 Hello Joe Bloggs!\n18 Hello Jane Doe!\n19 Hello Joe Bloggs!\n20 Hello Jane Doe!\n21 Hello Joe Bloggs!\n22 Hello Jane Doe!\n23 Hello Joe Bloggs!\n24 Hello Jane Doe!\n25 Hello Joe Bloggs!\n26 Hello Jane Doe!\n27 Hello Joe Bloggs!\n28 Hello Jane Doe!\n29 Hello Joe Bloggs!\n30 Hello Jane Doe!\n31 Hello Joe Bloggs!\n32 Hello Jane Doe!\n33 Hello Joe Bloggs!\n34 Hello Jane Doe!\n35 Hello Joe Bloggs!\n36 Hello Jane Doe!\n37 Hello Joe Bloggs!\n38 Hello Jane Doe!\n39 Hello Joe Bloggs!\n40 Hello Jane Doe!\n41 Hello Joe Bloggs!\n42 Hello Jane Doe!\n43 Hello Joe Bloggs!\n44 Hello Jane Doe!\n45 Hello Joe Bloggs!\n46 Hello Jane Doe!\n47 Hello Joe Bloggs!\n48 Hello Jane Doe!\n49 Hello Joe Bloggs!\n50 Hello Jane Doe!\n51 Hello Joe Bloggs!\n52 Hello Jane Doe!\n53 Hello Joe Bloggs!\n54 Hello Jane Doe!\n55 Hello Joe Bloggs!\n56 Hello Jane Doe!\n57 Hello Joe Bloggs!\n58 Hello Jane Doe!\n59 Hello Joe Bloggs!\n60 Hello Jane Doe!\n61 Hello Joe Bloggs!\n62 Hello Jane Doe!\n63 Hello Joe Bloggs!\n64 Hello Jane Doe!\n65 Hello Joe Bloggs!\n66 Hello Jane Doe!\n67 Hello Joe Bloggs!\n68 Hello Jane Doe!\n69 Hello Joe Bloggs!\n70 Hello Jane Doe!\n71 Hello Joe Bloggs!\n72 Hello Jane Doe!\n73 Hello Joe Bloggs!\n74 Hello Jane Doe!\n75 Hello Joe Bloggs!\n76 Hello Jane Doe!\n77 Hello Joe Bloggs!\n78 Hello Jane Doe!\n79 Hello Joe Bloggs!\n",
+  "status": "running",
+  "user": "00000000-0000-0000-0000-000000000000"
+}

@@ -1,0 +1,23 @@
+==> Workflow engine logs
+2024-09-24 12:12:16,635 | root | MainThread | INFO | Publishing step:0, cmd: python "code/helloworld.py" --inputfile "data/names.txt" --outputfile "results/greetings.txt" --sleeptime 1.0, total steps 1 to MQ
+2024-09-24 12:12:47,330 | root | MainThread | WARNING | Termination signal 15 received. Workflow interrupted ...
+
+
+
+==> Job logs
+==> Step: hello1
+==> Workflow ID: 5cc85ffe-e9b0-47c0-b047-b451f0574c36
+==> Compute backend: Kubernetes
+==> Job ID: reana-run-job-a9be6868-a238-463b-9357-11c374aecafc
+==> Docker image: docker.io/library/python:3.8-slim
+==> Command: python "code/helloworld.py" --inputfile "data/names.txt" --outputfile "results/greetings.txt" --sleeptime 1.0
+==> Status: stopped
+==> Started: 2024-09-24T12:12:16
+==> Step hello1 emitted no logs.
+{
+  "job_id": "c6e601d0-4cd0-4b56-96d2-cf459015f8d5",
+  "job_name": "hello1",
+  "logs": "2024-09-24T12:12:17 INFO     Parameters: inputfile=data/names.txt outputfile=results/greetings.txt sleeptime=1.0\n0 Hello Jane Doe!\n1 Hello Joe Bloggs!\n2 Hello Jane Doe!\n3 Hello Joe Bloggs!\n4 Hello Jane Doe!\n5 Hello Joe Bloggs!\n6 Hello Jane Doe!\n7 Hello Joe Bloggs!\n8 Hello Jane Doe!\n9 Hello Joe Bloggs!\n10 Hello Jane Doe!\n11 Hello Joe Bloggs!\n12 Hello Jane Doe!\n13 Hello Joe Bloggs!\n14 Hello Jane Doe!\n15 Hello Joe Bloggs!\n16 Hello Jane Doe!\n17 Hello Joe Bloggs!\n18 Hello Jane Doe!\n19 Hello Joe Bloggs!\n20 Hello Jane Doe!\n21 Hello Joe Bloggs!\n22 Hello Jane Doe!\n23 Hello Joe Bloggs!\n24 Hello Jane Doe!\n25 Hello Joe Bloggs!\n26 Hello Jane Doe!\n27 Hello Joe Bloggs!\n28 Hello Jane Doe!\n29 Hello Joe Bloggs!\n30 Hello Jane Doe!\n31 Hello Joe Bloggs!\n32 Hello Jane Doe!\n33 Hello Joe Bloggs!\n34 Hello Jane Doe!\n35 Hello Joe Bloggs!\n",
+  "status": "stopped",
+  "user": "00000000-0000-0000-0000-000000000000"
+}

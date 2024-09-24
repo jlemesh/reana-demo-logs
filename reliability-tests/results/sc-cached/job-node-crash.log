@@ -1,0 +1,51 @@
+==> Workflow engine logs
+2024-09-24 12:49:24,021 | root | MainThread | INFO | Publishing step:0, cmd: python "code/helloworld.py" --inputfile "data/names.txt" --outputfile "results/greetings.txt" --sleeptime 1.0, total steps 1 to MQ
+2024-09-24 12:50:19,639 | root | kubernetes_job_monitor | WARNING | Job pod reana-run-job-3e9d130e-513d-42ec-94c9-3104d419c67f-x89q4 was terminated, reason: Unknown, message: None
+2024-09-24 12:50:19,651 | root | kubernetes_job_monitor | WARNING | Job pod reana-run-job-3e9d130e-513d-42ec-94c9-3104d419c67f-x89q4 was terminated, reason: Unknown, message: None
+2024-09-24 12:50:24,375 | root | MainThread | INFO | Workflow f5d30d2e-04c0-416c-9d03-e8671e983a92 finished. Files available at /var/reana/users/00000000-0000-0000-0000-000000000000/workflows/f5d30d2e-04c0-416c-9d03-e8671e983a92.
+
+
+
+==> Job logs
+==> Step: hello1
+==> Workflow ID: f5d30d2e-04c0-416c-9d03-e8671e983a92
+==> Compute backend: Kubernetes
+==> Job ID: reana-run-job-3e9d130e-513d-42ec-94c9-3104d419c67f
+==> Docker image: docker.io/library/python:3.8-slim
+==> Command: python "code/helloworld.py" --inputfile "data/names.txt" --outputfile "results/greetings.txt" --sleeptime 1.0
+==> Status: failed
+==> Started: 2024-09-24T12:49:24
+==> Finished: 2024-09-24T12:50:19
+==> Logs:
+2024-09-24T12:49:24 INFO     Parameters: inputfile=data/names.txt outputfile=results/greetings.txt sleeptime=1.0
+0 Hello Jane Doe!
+1 Hello Joe Bloggs!
+2 Hello Jane Doe!
+3 Hello Joe Bloggs!
+4 Hello Jane Doe!
+5 Hello Joe Bloggs!
+6 Hello Jane Doe!
+7 Hello Joe Bloggs!
+8 Hello Jane Doe!
+9 Hello Joe Bloggs!
+10 Hello Jane Doe!
+11 Hello Joe Bloggs!
+12 Hello Jane Doe!
+13 Hello Joe Bloggs!
+14 Hello Jane Doe!
+15 Hello Joe Bloggs!
+16 Hello Jane Doe!
+17 Hello Joe Bloggs!
+18 Hello Jane Doe!
+19 Hello Joe Bloggs!
+20 Hello Jane Doe!
+21 Hello Joe Bloggs!
+22 Hello Jane Doe!
+23 Hello Joe Bloggs!
+24 Hello Jane Doe!
+25 Hello Joe Bloggs!
+26 Hello Jane Doe!
+27 Hello Joe Bloggs!
+28 Hello Jane Doe!
+29 Hello Joe Bloggs!
+

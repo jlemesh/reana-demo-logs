@@ -1,0 +1,56 @@
+==> Workflow engine logs
+2024-09-24 11:53:00,411 | root | MainThread | INFO | Publishing step:0, cmd: python "code/exception.py" --inputfile "data/names.txt" --outputfile "results/greetings.txt" --sleeptime 1.0, total steps 1 to MQ
+2024-09-24 11:53:32,821 | root | kubernetes_job_monitor | WARNING | Job pod reana-run-job-e0324b22-35cf-42b0-b355-386d7ae95d29-6xhtr was terminated, reason: Error, message: None
+2024-09-24 11:53:36,593 | root | MainThread | INFO | Workflow cd9f3d79-b0f9-46b0-8edf-963a71b6f318 finished. Files available at /var/reana/users/00000000-0000-0000-0000-000000000000/workflows/cd9f3d79-b0f9-46b0-8edf-963a71b6f318.
+
+
+
+==> Job logs
+==> Step: hello1
+==> Workflow ID: cd9f3d79-b0f9-46b0-8edf-963a71b6f318
+==> Compute backend: Kubernetes
+==> Job ID: reana-run-job-e0324b22-35cf-42b0-b355-386d7ae95d29
+==> Docker image: docker.io/library/python:3.8-slim
+==> Command: python "code/exception.py" --inputfile "data/names.txt" --outputfile "results/greetings.txt" --sleeptime 1.0
+==> Status: failed
+==> Started: 2024-09-24T11:53:00
+==> Finished: 2024-09-24T11:53:32
+==> Logs:
+2024-09-24T11:53:00 INFO     Parameters: inputfile=data/names.txt outputfile=results/greetings.txt sleeptime=1.0
+0 Hello Jane Doe!
+1 Hello Joe Bloggs!
+2 Hello Jane Doe!
+3 Hello Joe Bloggs!
+4 Hello Jane Doe!
+5 Hello Joe Bloggs!
+6 Hello Jane Doe!
+7 Hello Joe Bloggs!
+8 Hello Jane Doe!
+9 Hello Joe Bloggs!
+10 Hello Jane Doe!
+11 Hello Joe Bloggs!
+12 Hello Jane Doe!
+13 Hello Joe Bloggs!
+14 Hello Jane Doe!
+15 Hello Joe Bloggs!
+16 Hello Jane Doe!
+17 Hello Joe Bloggs!
+18 Hello Jane Doe!
+19 Hello Joe Bloggs!
+20 Hello Jane Doe!
+21 Hello Joe Bloggs!
+22 Hello Jane Doe!
+23 Hello Joe Bloggs!
+24 Hello Jane Doe!
+25 Hello Joe Bloggs!
+26 Hello Jane Doe!
+27 Hello Joe Bloggs!
+28 Hello Jane Doe!
+29 Hello Joe Bloggs!
+Traceback (most recent call last):
+  File "code/exception.py", line 100, in <module>
+    hello(parsed_args.inputfile, parsed_args.outputfile, parsed_args.sleeptime)
+  File "code/exception.py", line 62, in hello
+    raise Exception("This is a test exception")
+Exception: This is a test exception
+

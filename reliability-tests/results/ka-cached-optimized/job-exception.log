@@ -1,0 +1,25 @@
+==> Workflow engine logs
+2024-09-24 13:59:04,553 | root | MainThread | INFO | Publishing step:0, cmd: python "code/exception.py" --inputfile "data/names.txt" --outputfile "results/greetings.txt" --sleeptime 1.0, total steps 1 to MQ
+2024-09-24 13:59:40,757 | root | MainThread | INFO | Workflow d1d72953-62e8-4e4c-9e36-7ff7c78b03eb finished. Files available at /var/reana/users/00000000-0000-0000-0000-000000000000/workflows/d1d72953-62e8-4e4c-9e36-7ff7c78b03eb.
+
+
+
+
+==> Job logs
+==> Step: hello1
+==> Workflow ID: d1d72953-62e8-4e4c-9e36-7ff7c78b03eb
+==> Compute backend: Kubernetes
+==> Job ID: reana-run-job-529dfbe8-8f97-4609-b405-e51dca57ca7a
+==> Docker image: docker.io/library/python:3.8-slim
+==> Command: python "code/exception.py" --inputfile "data/names.txt" --outputfile "results/greetings.txt" --sleeptime 1.0
+==> Status: failed
+==> Started: 2024-09-24T13:59:04
+==> Finished: 2024-09-24T13:59:37
+==> Step hello1 emitted no logs.
+{
+  "job_id": "28193b63-4a82-4eda-b1c6-36388d8067b0",
+  "job_name": "hello1",
+  "logs": "job: :\n 2024-09-24T13:59:04 INFO     Parameters: inputfile=data/names.txt outputfile=results/greetings.txt sleeptime=1.0\n0 Hello Jane Doe!\n1 Hello Joe Bloggs!\n2 Hello Jane Doe!\n3 Hello Joe Bloggs!\n4 Hello Jane Doe!\n5 Hello Joe Bloggs!\n6 Hello Jane Doe!\n7 Hello Joe Bloggs!\n8 Hello Jane Doe!\n9 Hello Joe Bloggs!\n10 Hello Jane Doe!\n11 Hello Joe Bloggs!\n12 Hello Jane Doe!\n13 Hello Joe Bloggs!\n14 Hello Jane Doe!\n15 Hello Joe Bloggs!\n16 Hello Jane Doe!\n17 Hello Joe Bloggs!\n18 Hello Jane Doe!\n19 Hello Joe Bloggs!\n20 Hello Jane Doe!\n21 Hello Joe Bloggs!\n22 Hello Jane Doe!\n23 Hello Joe Bloggs!\n24 Hello Jane Doe!\n25 Hello Joe Bloggs!\n26 Hello Jane Doe!\n27 Hello Joe Bloggs!\n28 Hello Jane Doe!\n29 Hello Joe Bloggs!\nTraceback (most recent call last):\n  File \"code/exception.py\", line 100, in <module>\n    hello(parsed_args.inputfile, parsed_args.outputfile, parsed_args.sleeptime)\n  File \"code/exception.py\", line 62, in hello\n    raise Exception(\"This is a test exception\")\nException: This is a test exception\n\n\nError\n",
+  "status": "failed",
+  "user": "00000000-0000-0000-0000-000000000000"
+}

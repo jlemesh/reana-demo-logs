@@ -1,0 +1,108 @@
+==> Workflow engine logs
+2024-09-24 13:42:30,609 | root | MainThread | INFO | Publishing step:0, cmd: python "code/helloworld.py" --inputfile "data/names.txt" --outputfile "results/greetings.txt" --sleeptime 1.0, total steps 1 to MQ
+
+
+
+==> Job logs
+==> Step: hello1
+==> Workflow ID: a0e00135-afee-4208-8b6c-2374cb7cdb22
+==> Compute backend: Kubernetes
+==> Job ID: reana-run-job-dabefbfd-5c2e-4886-8ab3-c5cac625b63b
+==> Docker image: docker.io/library/python:3.8-slim
+==> Command: python "code/helloworld.py" --inputfile "data/names.txt" --outputfile "results/greetings.txt" --sleeptime 1.0
+==> Status: running
+==> Started: 2024-09-24T13:42:30
+==> Logs:
+2024-09-24T13:42:31 INFO     Parameters: inputfile=data/names.txt outputfile=results/greetings.txt sleeptime=1.0
+0 Hello Jane Doe!
+1 Hello Joe Bloggs!
+2 Hello Jane Doe!
+3 Hello Joe Bloggs!
+4 Hello Jane Doe!
+5 Hello Joe Bloggs!
+6 Hello Jane Doe!
+7 Hello Joe Bloggs!
+8 Hello Jane Doe!
+9 Hello Joe Bloggs!
+10 Hello Jane Doe!
+11 Hello Joe Bloggs!
+12 Hello Jane Doe!
+13 Hello Joe Bloggs!
+14 Hello Jane Doe!
+15 Hello Joe Bloggs!
+16 Hello Jane Doe!
+17 Hello Joe Bloggs!
+18 Hello Jane Doe!
+19 Hello Joe Bloggs!
+20 Hello Jane Doe!
+21 Hello Joe Bloggs!
+22 Hello Jane Doe!
+23 Hello Joe Bloggs!
+24 Hello Jane Doe!
+25 Hello Joe Bloggs!
+26 Hello Jane Doe!
+27 Hello Joe Bloggs!
+28 Hello Jane Doe!
+29 Hello Joe Bloggs!
+30 Hello Jane Doe!
+31 Hello Joe Bloggs!
+32 Hello Jane Doe!
+33 Hello Joe Bloggs!
+34 Hello Jane Doe!
+35 Hello Joe Bloggs!
+36 Hello Jane Doe!
+37 Hello Joe Bloggs!
+38 Hello Jane Doe!
+39 Hello Joe Bloggs!
+40 Hello Jane Doe!
+41 Hello Joe Bloggs!
+42 Hello Jane Doe!
+43 Hello Joe Bloggs!
+44 Hello Jane Doe!
+45 Hello Joe Bloggs!
+46 Hello Jane Doe!
+47 Hello Joe Bloggs!
+48 Hello Jane Doe!
+49 Hello Joe Bloggs!
+50 Hello Jane Doe!
+51 Hello Joe Bloggs!
+52 Hello Jane Doe!
+53 Hello Joe Bloggs!
+54 Hello Jane Doe!
+55 Hello Joe Bloggs!
+56 Hello Jane Doe!
+57 Hello Joe Bloggs!
+58 Hello Jane Doe!
+59 Hello Joe Bloggs!
+60 Hello Jane Doe!
+61 Hello Joe Bloggs!
+62 Hello Jane Doe!
+63 Hello Joe Bloggs!
+64 Hello Jane Doe!
+65 Hello Joe Bloggs!
+66 Hello Jane Doe!
+67 Hello Joe Bloggs!
+68 Hello Jane Doe!
+69 Hello Joe Bloggs!
+70 Hello Jane Doe!
+71 Hello Joe Bloggs!
+72 Hello Jane Doe!
+73 Hello Joe Bloggs!
+74 Hello Jane Doe!
+75 Hello Joe Bloggs!
+76 Hello Jane Doe!
+77 Hello Joe Bloggs!
+78 Hello Jane Doe!
+79 Hello Joe Bloggs!
+80 Hello Jane Doe!
+81 Hello Joe Bloggs!
+82 Hello Jane Doe!
+83 Hello Joe Bloggs!
+84 Hello Jane Doe!
+85 Hello Joe Bloggs!
+86 Hello Jane Doe!
+87 Hello Joe Bloggs!
+88 Hello Jane Doe!
+89 Hello Joe Bloggs!
+90 Hello Jane Doe!
+

@@ -1,0 +1,50 @@
+==> Workflow engine logs
+2024-09-24 11:38:11,825 | root | MainThread | INFO | Publishing step:0, cmd: python "code/oom.py" --inputfile "data/names.txt" --outputfile "results/greetings.txt" --sleeptime 1.0, total steps 1 to MQ
+2024-09-24 11:38:44,180 | root | kubernetes_job_monitor | WARNING | Job pod reana-run-job-2c9f4af5-ce49-4438-b52e-ee5adc9701ce-wpgrk was terminated, reason: OOMKilled, message: None
+2024-09-24 11:38:47,997 | root | MainThread | INFO | Workflow 76d692cb-65f2-4520-a164-3d64a2756d27 finished. Files available at /var/reana/users/00000000-0000-0000-0000-000000000000/workflows/76d692cb-65f2-4520-a164-3d64a2756d27.
+
+
+
+==> Job logs
+==> Step: hello1
+==> Workflow ID: 76d692cb-65f2-4520-a164-3d64a2756d27
+==> Compute backend: Kubernetes
+==> Job ID: reana-run-job-2c9f4af5-ce49-4438-b52e-ee5adc9701ce
+==> Docker image: docker.io/library/python:3.8-slim
+==> Command: python "code/oom.py" --inputfile "data/names.txt" --outputfile "results/greetings.txt" --sleeptime 1.0
+==> Status: failed
+==> Started: 2024-09-24T11:38:11
+==> Finished: 2024-09-24T11:38:44
+==> Logs:
+2024-09-24T11:38:12 INFO     Parameters: inputfile=data/names.txt outputfile=results/greetings.txt sleeptime=1.0
+0 Hello Jane Doe!
+1 Hello Joe Bloggs!
+2 Hello Jane Doe!
+3 Hello Joe Bloggs!
+4 Hello Jane Doe!
+5 Hello Joe Bloggs!
+6 Hello Jane Doe!
+7 Hello Joe Bloggs!
+8 Hello Jane Doe!
+9 Hello Joe Bloggs!
+10 Hello Jane Doe!
+11 Hello Joe Bloggs!
+12 Hello Jane Doe!
+13 Hello Joe Bloggs!
+14 Hello Jane Doe!
+15 Hello Joe Bloggs!
+16 Hello Jane Doe!
+17 Hello Joe Bloggs!
+18 Hello Jane Doe!
+19 Hello Joe Bloggs!
+20 Hello Jane Doe!
+21 Hello Joe Bloggs!
+22 Hello Jane Doe!
+23 Hello Joe Bloggs!
+24 Hello Jane Doe!
+25 Hello Joe Bloggs!
+26 Hello Jane Doe!
+27 Hello Joe Bloggs!
+28 Hello Jane Doe!
+29 Hello Joe Bloggs!
+
