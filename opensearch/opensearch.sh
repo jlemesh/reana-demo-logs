@@ -44,7 +44,7 @@ WORKFLOW_LOG_TEMPLATE_FILE_PATH="${WORKFLOW_LOG_TEMPLATE_FILE_PATH:-workflow_log
 KUBECTL_CERTS="${KUBECTL_CERTS:-false}" # Use admin certificates from Kubernetes secret; makes cURL use TLS while connecting to OpenSearch
 CERTS_FROM_FILE="${CERTS_FROM_FILE:-false}" # Use admin certificates from files; makes cURL use TLS while connecting to OpenSearch
 CERT_DIR="${CERT_DIR:-config/certs}" # If CERTS_FROM_FILE is true, the directory where the certificates are stored (files should be named ca.crt, admin.crt and admin.key)
-KUBECTL_SECRET_NAME="${KUBECTL_SECRET_NAME:-reana-opensearch-tls-secret}" # If KUBECTL_CERTS is true, the secret name to use
+KUBECTL_SECRET_NAME="${KUBECTL_SECRET_NAME:-reana-opensearch-tls-secrets}" # If KUBECTL_CERTS is true, the secret name to use
 
 # Execute cURL when TLS is enabled
 curl_exec_secure() {
