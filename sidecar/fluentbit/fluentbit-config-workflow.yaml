@@ -11,13 +11,24 @@ data:
       Daemon Off
       Flush 1
       Log_Level debug
+      Parsers_File /fluent-bit/etc/parsers.conf
+      Parsers_File /fluent-bit/etc/conf/custom_parsers.conf
       HTTP_Server On
       HTTP_Listen 0.0.0.0
       HTTP_Port 24444
       Health_Check On
     [INPUT]
       Name tail
-      Path /opt/app/log.log
+      Path /opt/app/workflow_engine_log.log
+      Tag workflow-engine.*
+      Mem_Buf_Limit 5MB
+      Skip_Long_Lines Off
+      Refresh_Interval 1
+      Rotate_Wait 10
+    [INPUT]
+      Name tail
+      Path /opt/app/job_controller_log.log
+      Tag job-controller.*
       Mem_Buf_Limit 5MB
       Skip_Long_Lines Off
       Refresh_Interval 1
@@ -42,3 +53,21 @@ data:
       Name modify
       Match *
       Rename message log
+    [FILTER]
+      Name parser
+      Match job-controller.*
+      Key_name log
+      Parser reana-capture
+      Reserve_Data On
+      Preserve_Key On
+    [FILTER]
+      Name grep
+      Match job-controller.*
+      Logical_Op or
+      Regex level ERROR
+      Regex level WARNING
+  custom_parsers.conf: |
+    [PARSER]
+      Name reana-capture
+      Format regex
+      Regex /^(?<timestamp>[1-9:\-,\w ]+) \| (?<name>[a-zA-Z1-9]+) \| (?<thread>[a-zA-Z1-9_\- \w\(\)]+) \| (?<level>[a-zA-Z]+) \| (?<message>.*)/m
